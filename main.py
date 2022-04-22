@@ -1,4 +1,7 @@
-import os
-bearer = os.environ['BEARER']
-client = tweepy.Client("bearer")
+from bootup import *
+
+
+
+
+#client.create_tweet(text="This is my first tweet!")
 

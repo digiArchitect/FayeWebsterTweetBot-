@@ -1,0 +1,5 @@
+What needs to be done!
+A. Chrouses are chunked into one tweet
+B. Implement google cloud support for automation
+C. Organize code into main, bootup, tweet, and cloud
+D. More effecient way of updating lyrics
