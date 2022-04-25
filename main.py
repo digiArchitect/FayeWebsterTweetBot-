@@ -3,15 +3,14 @@ from keep_alive import *
 
 import time
 keep_alive()
-
+f = open('data.json','r')
+lyrics = data['lyrics']
+seen = data['seenLyrics']
+count = data['currentCount']
 f.close()
 
   
-def generateTweet():
-  f = open('data.json','r')
-  data = json.load(f)
-  lyrics = data['lyrics']
-  seen = data['seenLyrics']
+def generateTweet(lyrics,seen,currentCount):
   if(len(lyrics) > 0):
     s = lyrics[0]
     if(s not in seenLyrics):
@@ -24,12 +23,12 @@ def generateTweet():
       'seenLyrics': seen
          
     }
-    changeData(dictionary)
+      changeData(dictionary)
       
       
-  else:
-    lyrics.pop(0)
-    generateTweet()
+    else:
+      lyrics.pop(0)
+      generateTweet(lyrics,seen,currentCount)
    
     
 
@@ -37,9 +36,9 @@ def generateTweet():
 
     
 while True:
-  generateTweet()
-  keep_alive()
-  time.sleep(1800)
+
+  generateTweet(lyrics,seen,currentCount)
+  time.sleep(10800)
     
     
     
