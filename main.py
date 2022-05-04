@@ -3,35 +3,33 @@ from keep_alive import *
 
 import time
 keep_alive()
+commitLyrics()
 f = open('data.json','r')
 lyrics = data['lyrics']
-seen = data['seenLyrics']
 count = data['currentCount']
 f.close()
 
-  
-def generateTweet(lyrics,seen,currentCount):
-  for x in lyrics:
-    if(x not in seen):
-      time.sleep(10800)
-      client.create_tweet(text=x)
-      seen.append(x)
-      dictionary = {
-      'currentCount': data['currentCount'],
-      'lyrics': lyrics,
-      'seenLyrics': seen
+#Tweets lyric and then updates it   
+def getLyric(lyrics):
+  s = lyrics.pop(0)
+  client.create_tweet(text=s)
+  dictionary = {
+    'currentCount': count,
+    'lyrics': lyrics,
        
-    }
-      changeData(dictionary)
-
+  }
+  changeData(dictionary)
+  return lyrics
 
    
     
 
-generateTweet(lyrics,seen,currentCount)
+
 
     
-
+while True:
+ lyrics = getLyric(lyrics)
+ time.sleep(10800)
     
     
     
